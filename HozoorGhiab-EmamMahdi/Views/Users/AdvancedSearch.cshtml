@@ -1,0 +1,48 @@
+﻿@model IEnumerable<User>
+
+<p>
+    <a asp-action="Index" class="float-right btn btn-info">نمایش همه طلاب</a>
+</p>
+<table id="tableShow" class="table text-right" style="direction:rtl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">جزئیات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

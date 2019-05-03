@@ -1,0 +1,46 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "حذف طلبه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-right">حذف طلبه</h2>
+
+<h3 class="text-right text-danger">مطمئنی میخواهی حذفش کنی؟؟</h3>
+<div>
+ 
+    <hr />
+    <dl class="col-12 dl-horizontal float-right text-right ">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tell)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tell)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+    <br />
+    <form asp-action="Delete" class="float-right">
+        <input type="hidden" asp-for="UserId" />
+        <input type="submit" value="حذف طلبه" class="btn btn-danger" /> |
+        <a asp-action="Index">برگشت به لیست طلاب</a>
+    </form>
+</div>

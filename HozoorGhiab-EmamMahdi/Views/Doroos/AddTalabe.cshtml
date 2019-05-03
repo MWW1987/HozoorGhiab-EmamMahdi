@@ -1,0 +1,87 @@
+﻿@model AddTalabeViewModel
+@{
+    ViewData["Title"] = "AddTalabe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-md-12 float-right" >
+    <h2 style="direction: rtl" class="float-right m-4" >اضافه کردن طلبه به درس</h2>
+</div>
+<a asp-controller="Doroos" asp-action="Index" >بازگشت به لیست کلاس ها</a>
+
+<br />
+<div class="row col-md-12  text-right" style="direction: rtl">
+    <div class="col-md-2">
+        <div class="card p-2 bg-light">
+            <h5 class="card-title">@Model.Dars.Name</h5>
+            <h6 class="card-subtitle">@Model.Dars.Ostad.Name</h6>
+            <p class="card-text">@Model.Dars.DarsTime</p>
+        </div>
+        <input type="text" name="darsId" id="darsId" hidden value="@Model.Dars.DoroosId" />
+    </div>
+    <div class="col-md-8 text-right float-right">
+        <input type="text" id="searchName" name="searchName" placeholder="نام طلبه را برای جستجو وارد کنید" class="form-control col-md-6 d-inline text-right" />
+        <input type="button" name="search" value="جستجو" class="btn btn-info" id="search" />
+        <input type="button" name="addTalabe" value="اضافه کردن" class="btn btn-success" id="addTalabe" />
+        <hr />
+        <div id="searchArea"><partial name="SearchTalabe" model="@Model.User" /></div>
+
+    </div>
+</div>
+<br />
+<div class="row col-md-12 text-right" style="direction: rtl;">
+            <div class="col-md-2">
+            <div class="card bg-light p-2" style="height: 100px;">
+                <h5 class="card-title">طلاب اضافه شده</h5>
+            </div>
+        </div>
+            <div class="col-md-8 float-right text-right" id="userAddedNotPartial">
+                @if (Model.Users == null)
+                {
+                    <b>طلبه ای در این کلاس وجود ندارد</b>
+                }
+                else
+                {
+
+
+                    @foreach (var item in Model.Users)
+                    {
+                        <div class="alert alert-primary" role="alert">
+                            @item.FullName
+                        </div>
+                    }
+                }
+            </div>
+        <div class="col-md-8 float-right text-right" id="userAdded">
+            <partial name="AddTalabePartial" model="@Model.User" />
+        </div>
+   
+</div>
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchArea").hide();
+        $("#userAdded").hide();
+        
+    });
+
+    $(document).ready(function () {
+        $("#search").click(function () {
+            $("#searchArea").show();
+            var name = $("#searchName").val();
+            $("#searchArea").load("/Doroos/SearchTalabe",
+                { name: name });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#addTalabe").click(function () {
+            $("#searchArea").hide();
+            $("#userAddedNotPartial").hide();
+            $("#userAdded").show();
+            var id = $("#darsId").val();
+            var userId = $("#userId").val();
+            $("#userAdded").load("/Doroos/AddTalabePartial", { id: id, userId: userId });
+        });
+    });
+</script>
+

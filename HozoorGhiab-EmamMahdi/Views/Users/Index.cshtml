@@ -1,0 +1,102 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row col-md-4 float-right" style="margin-bottom: 10px;">
+
+    <input type="text" placeholder="جستجو بر اساس نام" id="textSearchName" class="form-control text-right" />
+    
+</div>
+<div class="row col-md-4 float-right" style="margin-bottom: 10px;">
+
+    <input type="text" placeholder="جستجو بر اساس کد طلبه" id="textSearchCode" class="form-control text-right" />
+
+</div>
+<h2>ایجاد طلبه</h2>
+
+
+<table id="tableShow" class="table table-striped text-right" style="direction:rtl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UserId">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.UserId">جزئیات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.UserId">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="partialShow" class="col-md-12 float-right" style="direction: rtl">
+    <partial name="AdvancedSearch" />
+
+</div>
+<p class="float-right">
+    <a asp-action="Create">ایجاد طلبه جدید</a>
+</p>
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#partialShow").hide();
+        $("#textSearchName").keypress(function () {
+            $("#tableShow").hide();
+            $("#partialShow").show();
+        });
+        $("#textSearchCode").keypress(function () {
+            $("#tableShow").hide();
+            $("#partialShow").show();
+        });
+    });
+
+    $(document).ready(function () {
+        $("#textSearchName").keypress(function () {
+            var name = $("#textSearchName").val();
+                $("#partialShow").load("/Users/AdvancedSearch",
+                    { name: name });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#textSearchCode").keypress(function () {
+            var code = $("#textSearchCode").val();
+            $("#partialShow").load("/Users/AdvancedSearch",
+                { code: code });
+        });
+    });
+
+
+
+</script>

@@ -1,0 +1,62 @@
+﻿@model CreateDarsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="float-right">ایجاد درس جدید</h2>
+
+<br />
+<hr />
+<div class="row" style="direction: rtl">
+    <div class="col-md-4 text-right">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        @Html.DisplayNameFor(model => model.Status)
+                        <input asp-for="Status" />
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="DarsTime" class="control-label"></label>
+                <select asp-for="DarsTime" asp-items="Html.GetEnumSelectList<TimeDars>()" class="form-control" >
+                    <option value="">لطفا ساعت درس  را انتخاب کنید</option>
+                    </select>
+                <span asp-validation-for="DarsTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ostad" class="control-label"></label>
+                <select asp-for="Ostad" asp-items="ViewBag.Ostads" class="select2 form-control" >
+                    <option value="">استاد را انتخاب کنید</option>
+                    </select>
+                <span asp-validation-for="Ostad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ایجاد درس جدید" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">برگشت به لیست دروس</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

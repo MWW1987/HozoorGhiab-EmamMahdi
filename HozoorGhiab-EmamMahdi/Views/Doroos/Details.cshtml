@@ -1,0 +1,132 @@
+﻿@model AddTalabeViewModel
+@{
+    ViewData["Title"] = "طلاب درس ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card text-right">
+    <div class="card-header font-weight-bold">
+        درس @Model.Dars.Name
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">نام استاد: @Model.Dars.Ostad.Name</h5>
+        <p class="card-text">کلاس در  @Model.Dars.DarsTime برگذار میشود</p>
+        <a asp-controller="Doroos" asp-action="Index" class="btn btn-primary">برگشت به لیست کلاس ها</a>
+    </div>
+    <input type="text" name="darsId" value="@Model.Dars.DoroosId" id="darsId" hidden/>
+</div>
+<div class="card text-right">
+    <div class="card-header">
+        لیست طلاب شرکت کننده در کلاس
+    </div>
+    <div class="card-body">
+        <table id="tableShow" class="table table-bordered table-striped text-right" style="direction:rtl">
+            <thead>
+                <tr>
+                    <th>
+                        نام طلبه
+                    </th>
+                    <th>
+                        کد طلبه طلبه
+                    </th>
+                    <th>
+                        شماره تلفن طلبه
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model.Users)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                            @*asp-action="DeleteTalabeFromDars"*@
+                            @*asp-route-id="@item.UserId"*@
+                             
+                            <a asp-controller="Doroos" asp-action="DeleteTalabeFromDars" asp-route-id="@Model.Dars.DoroosId" asp-route-userId="@item.UserId" class="btn btn-danger btn-sm  float-left"><i class="fa fa-times "></i></a> 
+                           
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tell)
+
+                        </td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <input type="text" name="saveId" id="saveId" hidden />
+        @*<a class="btn btn-danger" id="btnConfirm" >از حذف مطمئن هستید؟</a>*@
+        <a asp-action="AddTalabe" asp-route-id="@Model.Dars.DoroosId" class="btn btn-primary">اضافه کردن طلبه جدید</a>
+        
+    </div>
+</div>
+
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script>
+
+    //$(document).ready(function () {
+    //    $("#btnConfirm").hide();
+    //});
+
+    //function deleteTalabe(userId) {
+    //    document.getElementById("saveId").value = userId;
+    //    $("#btnConfirm").show();
+    //    //document.getElementById("btnConfirm").style.visibility = "visible";
+    //   // alert();
+
+    //};
+
+    //$(document).ready(function () {
+    //    $("#btnConfirm").click(function () {
+
+            
+    //        var userId = document.getElementById("saveId").value;
+    //        var id = document.getElementById("darsId").value;
+    //        $("#ShowTalabePartial").load("/Doroos/DeleteTalabeFromDars",
+    //           { id: id, userId: userId });
+    //        //$("#btnConfirm").hide();
+    //    });
+    //});
+    
+    
+    ////var userId = document.getElementById("saveId").value;
+    ////var darId = document.getElementById("darsId").value;
+
+    ////  function deleteTalabe(userId) {
+    ////    var id = $("#darsId").val();
+    ////    $("#ShowTalabePartial").load("/Doroos/DeleteTalabeFromDars",
+    ////           { id: id, userId: userId });
+    ////}
+
+    ////$.fn.extend({
+    ////    deleteTalabe: function (userId) {
+    ////        var id = $("#darsId").val();
+    ////        $("#ShowTalabePartial").load("/Doroos/DeleteTalabeFromDars",
+    ////            { id: id, userId: userId });
+    ////    }
+    ////});
+    ////$(document).ready(function () {
+    ////    deleteTalabe: function(userId) {
+    ////        var id = $("#darsId").val();
+    ////        $("#ShowTalabePartial").load("/Doroos/DeleteTalabeFromDars",
+    ////            { id: id, userId: userId });
+    ////    };
+
+    ////});
+
+    
+
+
+
+</script>

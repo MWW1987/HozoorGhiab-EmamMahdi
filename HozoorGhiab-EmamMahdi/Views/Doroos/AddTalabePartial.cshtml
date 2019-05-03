@@ -1,0 +1,16 @@
+﻿@model AddTalabeViewModel
+@if (Model == null)
+{
+    <b>طلبه ای در این کلاس وجود ندارد</b>
+}
+else
+{
+
+
+    @foreach (var item in Model.Users)
+    {
+        <div class="alert alert-primary" role="alert">
+            @item.FullName
+        </div>
+    }
+}

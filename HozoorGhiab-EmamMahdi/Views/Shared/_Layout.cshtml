@@ -1,0 +1,174 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap core CSS -->
+
+
+
+
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/all.min.css" rel="stylesheet" />
+    <link href="~/select2/dist/css/select2.css" rel="stylesheet" />
+
+
+
+
+</head>
+
+<body>
+
+    <div id="navtop" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">مدرسة الإمام المهدی  عج</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-white" asp-controller="Users" asp-action="Index">طلاب</a>
+            <a class="p-2 text-white" asp-controller="Ostad" asp-action="Index">اساتید</a>
+            <a class="p-2 text-white" asp-controller="Doroos" asp-action="Index">کلاس ها</a>
+            <a class="p-2 text-white" href="#">حضور و غیاب</a>
+        </nav>
+        @*<a class="btn btn-outline-primary" href="#">Sign up</a>*@
+    </div>
+    <div class="col-md-2 order-md-2 mb-4 float-right">
+        <h4 class="d-flex justify-content-end align-items-center mb-3 flex-row-reverse">
+            <span class="text-muted">لیست طلاب</span>
+
+        </h4>
+        <ul class="list-group mb-3">
+            <li class=" bg-custom list-group-item d-flex justify-content-end lh-condensed text-right ">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed  text-right">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed  text-right">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed  text-right">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed  text-right">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed  text-right">
+                <div>
+                    <h6 class="my-0">مدیریت طلاب</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت اساتید</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">مدیریت کلاس ها</h6>
+
+                </div>
+
+            </li>
+            <li class="bg-custom list-group-item d-flex justify-content-end lh-condensed">
+                <div>
+                    <h6 class="my-0">حضور و غیاب</h6>
+
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.bundle.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+   <script src="~/select2/dist/js/select2.min.js"></script>
+    <script src="~/select2/dist/js/select2.full.js"></script>
+
+    <script>
+        $(".select2").select2({
+            placeholder: "انتخاب کنید"
+        });
+    </script>
+    @RenderSection("scripts", false)
+
+
+</body>
+</html>

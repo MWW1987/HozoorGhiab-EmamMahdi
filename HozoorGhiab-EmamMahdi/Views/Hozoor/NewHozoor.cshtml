@@ -1,0 +1,13 @@
+﻿@model HozoorViewModel
+@{
+    ViewData["Title"] = "حضور و غیاب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>حضور و غیاب درس  @Model.Dars.Name</p>
+
+@foreach (var item in Model.Users)
+{
+    <p>@item.FullName</p>
+}
+

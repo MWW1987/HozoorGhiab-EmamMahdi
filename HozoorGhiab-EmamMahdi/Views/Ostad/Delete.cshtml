@@ -1,0 +1,58 @@
+﻿@model Ostad
+
+@{
+    ViewData["Title"] = "حذف استاد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3 class="text-right text-danger">مطمئنی میخوای که  @Model.Name را حذف کنی؟</h3>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal float-right text-right">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tell)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tell)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+    </dl>
+    
+    
+    
+</div>
+<br />
+<div class="row col-md-12 text-right float-right" style="direction: rtl">
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OstadId" />
+        <a asp-action="Index">برگشت به لیست اساتید</a>
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        
+    </form>
+</div>

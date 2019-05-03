@@ -1,0 +1,42 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "جزئیات طلبه";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+ 
+    <hr />
+    <dl class="col-12 dl-horizontal float-right text-right ">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tell)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tell)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div class="float-right">
+    <a  asp-action="Edit" asp-route-id="@Model.UserId">ویرایش</a> |
+    <a asp-action="Index">برگشت به لیست طلاب</a>
+</div>

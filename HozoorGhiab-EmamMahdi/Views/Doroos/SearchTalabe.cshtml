@@ -1,0 +1,22 @@
+﻿@model AddTalabeViewModel
+
+@if (Model == null || Model.User == null)
+{
+    <input type="text" class="form-control col-md-3 d-inline text-right" value="طلبه ای یافت نشد" disabled />
+}
+else
+{
+    <input type="text" class="form-control col-md-3 d-inline text-right" value="@Model.User.FullName" disabled />
+    <input type="text" id="userId" value="@Model.User.UserId" hidden />
+}
+
+@*<label >
+        @if (Model == null)
+        {
+            @Html.DisplayText("طلبه ای یافت نشد")
+        }
+        else
+        {
+            @Model.User.FullName
+        }
+    </label>*@

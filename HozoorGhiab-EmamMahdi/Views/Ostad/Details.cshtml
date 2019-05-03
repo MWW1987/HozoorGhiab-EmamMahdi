@@ -1,0 +1,49 @@
+﻿@model Ostad
+
+@{
+    ViewData["Title"] = "جزئیات استاد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row " style="direction: rtl"><h2>جزئیات استاد @Model.Name</h2></div>
+
+<br />
+@*@Html.DisplayNameFor(model => model.Name)*@
+
+<div class="row" style="direction: rtl">
+ 
+    <div class="col-md-4 text-right">
+                    
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Tell" class="control-label"></label>
+                <input asp-for="Tell" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" disabled />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Account" class="control-label"></label>
+                <input asp-for="Account" class="form-control" disabled />
+                
+            </div>
+        
+    </div>
+</div>
+
+
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.OstadId">ویرایش</a> |
+        <a asp-action="Index">برگشت به لیست اساتید</a>
+    </div>

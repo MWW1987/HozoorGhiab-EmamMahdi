@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Doroos>
+@inject CountOfUsers cou
+
+@{
+    ViewData["Title"] = "لیست دروس";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row col-md-12" style="direction: rtl;">
+    <h2 class="float-right">لیست دروس</h2>
+</div>
+
+<p>
+    <a asp-action="Create">ایجاد درس جدید</a>
+</p>
+<table id="tableShow" class="table table-bordered table-striped text-right" style="direction:rtl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DarsTime)
+            </th>
+            <th>
+
+                @Html.DisplayNameFor(model => model.Ostad.Name)
+            </th>
+            <th> تعداد طلبه</th>
+            <th>گزینه ها</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @if (item.Status == true)
+                {
+                    @Html.DisplayName("فعال");
+                }
+                else
+                {
+                    @Html.DisplayName("غیر فعال");
+                }
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DarsTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ostad.Name)
+            </td>
+            <td>
+               @cou.GetCountOfUser(item.DoroosId)
+            </td>
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DoroosId">ویرایش</a> |
+                <a asp-action="AddTalabe" asp-route-id="@item.DoroosId">اضافه کردن طلبه به درس</a> |
+                <a asp-action="Details" asp-route-id="@item.DoroosId">نمایش طلاب درس</a> |
+                <a asp-controller="Hozoor" asp-action="NewHozoor" asp-route-darsId="@item.DoroosId" asp-route-dateTime="@DateTime.Now">حضور و غیاب</a> |
+                <a asp-action="Delete" asp-route-id="@item.DoroosId">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

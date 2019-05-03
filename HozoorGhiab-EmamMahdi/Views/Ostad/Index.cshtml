@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Ostad>
+
+@{
+    ViewData["Title"] = "لیست اساتید";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row col-md-12" style="direction: rtl;">
+    <h2 class="float-right">لیست اساتید</h2>
+</div>
+
+
+<div class="row col-md-5 float-right" style="margin-bottom: 10px;">
+
+    <input type="text" placeholder="جستجو" id="textSearch" class="form-control text-right" />
+
+</div>
+
+<p>
+    <a asp-action="Create">ایجاد استاد جدید</a>
+</p>
+
+
+<table id="tableShow" class="table table-bordered table-striped text-right" style="direction:rtl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>عملیات</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tell)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OstadId">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.OstadId">جزئیات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.OstadId">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="partialShow" class="col-md-12 float-right" style="direction: rtl">
+    <partial name="AdvancedSearch"/>
+    
+</div>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#partialShow").hide();
+        $("#textSearch").keypress(function () {
+            $("#tableShow").hide();
+            $("#partialShow").show();
+        });
+    });
+
+    $(document).ready(function () {
+            $("#textSearch").keypress(function () {
+                var name = $("#textSearch").val();
+                $("#partialShow").load("/Ostad/AdvancedSearch",
+                    { name: name });
+        });
+    });
+
+    
+    
+</script>
