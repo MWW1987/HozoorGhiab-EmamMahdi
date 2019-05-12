@@ -1,13 +1,44 @@
-﻿@model HozoorViewModel
+﻿@model IEnumerable<Hozoor>
 @{
     ViewData["Title"] = "حضور و غیاب";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>حضور و غیاب درس  @Model.Dars.Name</p>
+<p>حضور و غیاب درس </p>
 
-@foreach (var item in Model.Users)
-{
-    <p>@item.FullName</p>
-}
+<table id="tableShow" class="table table-bordered table-striped text-right" style="direction:rtl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Hazer)
+            </th>
+            
 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                
+                <td>
+                    @Html.CheckBox(item.User.FullName,false)
+                    @*@Html.DisplayFor(modelItem => item.Hazer)*@
+                </td>
+
+                @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.HozoorId">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.HozoorId">جزئیات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.HozoorId">حذف</a>
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

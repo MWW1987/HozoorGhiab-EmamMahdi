@@ -28,19 +28,30 @@ namespace HozoorGhiabEmamMahdi.Controllers
                 return NotFound();
             var users = context.Doroos_Users.Where(c => c.DoroosId == darsId).ToList();
             var dars = await context.Dorooses.FindAsync(darsId);
-            List<User> UsersFind = new List<User>();
+            //List<User> UsersFind = new List<User>();
+            //foreach (var item in users)
+            //{
+            //    var userTofind = context.Users.Find(item.UserId);
+            //    UsersFind.Add(userTofind);
+            //}
+            List<Hozoor> hozoorSent = new List<Hozoor>();
+
             foreach (var item in users)
             {
-                var userTofind = context.Users.Find(item.UserId);
-                UsersFind.Add(userTofind);
+                var hozoor = new Hozoor
+                {
+                    Dars = dars,
+                    User = context.Users.Find(item.UserId),
+                    Hazer = false
+                };
+                hozoorSent.Add(hozoor);
             }
+            //HozoorViewModel hozoorSent = new HozoorViewModel
+            //{
+            //    Dars = dars,
+            //    Users = UsersFind
 
-            HozoorViewModel hozoorSent = new HozoorViewModel
-            {
-                Dars = dars,
-                Users = UsersFind
-
-            };
+            //};
 
 
             return View(hozoorSent);
