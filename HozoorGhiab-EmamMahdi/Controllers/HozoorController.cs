@@ -19,6 +19,7 @@ namespace HozoorGhiabEmamMahdi.Controllers
             this.context = context;
         }
 
+        [HttpGet]
         public async Task<IActionResult>NewHozoor(int darsId, string dateTime)
         {
             DateTime tarikh = Convert.ToDateTime(dateTime);
@@ -27,7 +28,7 @@ namespace HozoorGhiabEmamMahdi.Controllers
             if (oldHozoor != null)
                 return NotFound();
             var users = context.Doroos_Users.Where(c => c.DoroosId == darsId).ToList();
-            var dars = await context.Dorooses.FindAsync(darsId);
+            var dars = await context.Dorooses.Include(c => c.Ostad).Where(c => c.DoroosId == darsId).FirstOrDefaultAsync();
             //List<User> UsersFind = new List<User>();
             //foreach (var item in users)
             //{
@@ -53,7 +54,8 @@ namespace HozoorGhiabEmamMahdi.Controllers
 
             //};
 
-
+            ViewBag.DarsName = dars.Name.ToString();
+            ViewBag.OstadName = dars.Ostad.Name;
             return View(hozoorSent);
         }
     }

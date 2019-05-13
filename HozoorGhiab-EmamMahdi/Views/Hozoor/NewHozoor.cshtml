@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>حضور و غیاب درس </p>
+<p>حضور و غیاب درس @ViewBag.DarsName </p>
+<p>استاد @ViewBag.OstadName</p>
 
 <table id="tableShow" class="table table-bordered table-striped text-right" style="direction:rtl">
     <thead>
@@ -29,7 +30,9 @@
                 </td>
                 
                 <td>
-                    @Html.CheckBox(item.User.FullName,false)
+                    <div class="btn btn bg-success">حاضر</div>
+                    <div class="btn btn bg-danger">غایب</div>
+                    
                     @*@Html.DisplayFor(modelItem => item.Hazer)*@
                 </td>
 
